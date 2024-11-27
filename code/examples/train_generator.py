@@ -40,15 +40,15 @@ model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accura
 # tag::train_generator_fit[]
 epochs = 5
 batch_size = 128
-model.fit_generator(generator=generator.generate(batch_size, num_classes),  # <1>
+model.fit(generator.generate(batch_size, num_classes),  # <1>
                     epochs=epochs,
-                    steps_per_epoch=generator.get_num_samples() / batch_size,  # <2>
+                    steps_per_epoch=int(generator.get_num_samples() / batch_size),  # <2>
                     validation_data=test_generator.generate(batch_size, num_classes),  # <3>
-                    validation_steps=test_generator.get_num_samples() / batch_size,  # <4>
-                    callbacks=[ModelCheckpoint('../checkpoints/small_model_epoch_{epoch}.h5')])  # <5>
+                    validation_steps=int(test_generator.get_num_samples() / batch_size),  # <4>
+                    callbacks=[ModelCheckpoint('../checkpoints/small_model_epoch_{epoch}.keras')])  # <5>
 
-model.evaluate_generator(generator=test_generator.generate(batch_size, num_classes),
-                         steps=test_generator.get_num_samples() / batch_size)  # <6>
+model.evaluate(test_generator.generate(batch_size, num_classes),
+                         steps=int(test_generator.get_num_samples() / batch_size))  # <6>
 # <1> We specify a training data generator for our batch size...
 # <2> ... and how many training steps per epoch we execute.
 # <3> An additional generator is used for validation...
