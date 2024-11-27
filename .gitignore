@@ -115,3 +115,5 @@ stem*.png
 ./data
 
 node_modules
+labels_train.npy
+features_train.npy
