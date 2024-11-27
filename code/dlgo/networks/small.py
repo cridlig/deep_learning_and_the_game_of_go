@@ -1,13 +1,15 @@
 from __future__ import absolute_import
 
 # tag::small_network[]
-from keras.layers import Dense, Activation, Flatten
+from keras.layers import Dense, Activation, Flatten, Input
 from keras.layers import Conv2D, ZeroPadding2D
 
 
 def layers(input_shape):
     return [
-        ZeroPadding2D(padding=3, input_shape=input_shape, data_format='channels_first'),  # <1>
+        Input(shape=input_shape),
+
+        ZeroPadding2D(padding=3, data_format='channels_first'),  # <1>
         Conv2D(48, (7, 7), data_format='channels_first'),
         Activation('relu'),
 
