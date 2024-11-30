@@ -119,3 +119,6 @@ labels_train.npy
 features_train.npy
 labels_test.npy
 features_test.npy
+*.tar
+*.tar.gz
+KGS-*
