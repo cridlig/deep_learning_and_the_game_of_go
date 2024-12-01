@@ -122,3 +122,4 @@ features_test.npy
 *.tar
 *.tar.gz
 KGS-*
+*.keras
